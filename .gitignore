@@ -1,0 +1,8 @@
+# Ignore .pyc files
+*.pyc
+
+# Ignore __pycache__ directory
+__pycache__/
+
+# Ignore __pycache__ directory
+.pytest_cache/
