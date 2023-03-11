@@ -1,5 +1,5 @@
 import pytest
-from wordmodule.wordFrequency import WordFrequency
+from src.wordFrequency import WordFrequency
 
 class WF(WordFrequency):
     """
