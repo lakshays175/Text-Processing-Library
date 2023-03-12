@@ -112,11 +112,10 @@ def test_calculate_frequency_for_word(input_text,input_word, output,wf):
 @pytest.mark.parametrize(
         "input_text, output",
         [
-            ["sun",{"sun"}],
-            ["sun,sun",{"suns":1}]
+            ["sun",{"sun" : 1}]
 
         ]
 )
-def calculate_count_of_words(input_text,output,wf):
+def test_calculate_count_of_words(input_text,output,wf):
         assert wf.calculate_count_of_words(input_text) == output
  
