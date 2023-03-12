@@ -6,3 +6,7 @@ __pycache__/
 
 # Ignore __pycache__ directory
 .pytest_cache/
+
+
+#Ignore htmlcov
+htmlcov/
