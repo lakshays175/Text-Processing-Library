@@ -111,11 +111,11 @@ class WordProcessing(WordFrequencyAnalyzer):
 if __name__ == '__main__':
 
     obj = WordProcessing()
-    r= obj.calculate_count_of_words("Sun")
+    #r= obj.calculate_count_of_words("Sun")
     #r= obj.calculate_frequency_for_word("Sun Shines",'Sun')
     #r= obj.calculate_highest_frequency("Sun Shines Shines")
     #r= obj.calculate_most_frequent_n_words("Sun Shines lake",2)
 
-    print(r)
-    print(type(r))
+    #print(r)
+    #print(type(r))
 
