@@ -1,17 +1,18 @@
-from abc import ABC,abstractmethod
+from abc import ABC
 
-class WordFrequencyAnalyzer(ABC):
-    def __init__(self) -> None:
+class InterfaceWordfrequency(ABC):
+    """
+    Defines a getter of the word(str) and Frequency(int)
+
+    Methods
+    Word     : Define getter for the word 
+    Frquency : Define getter for the frequency
+    
+    """
+    @property
+    def word(self):
         pass
-            
-    @abstractmethod
-    def calculate_highest_frequency(self,text):
-        raise NotImplementedError
-    
-    @abstractmethod
-    def calculate_most_frequent_n_words(self,text,n):
-        raise NotImplementedError
-    
-    @abstractmethod
-    def calculate_frequency_for_word(self,text,word):
-        raise NotImplementedError
+
+    @property
+    def frequency(self):
+        pass
