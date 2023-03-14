@@ -22,12 +22,12 @@ class WordProcessing(WordFrequencyAnalyzer):
 
     def __init__(self,text=t,word=w,n=ns):
         self.text = text
-        self.word = word
+        self._word = word
         self.n=n
 
     @property
     def word(self):
-        return self.word
+        return self._word
     
     @word.setter
     def word(self,value):
@@ -37,7 +37,13 @@ class WordProcessing(WordFrequencyAnalyzer):
     def frequency(self):
         return self.n
 
-    def calculate_count_of_words(self,text):
+    def __parse_inputs(self, text=None, word=None, frequency=None):
+        text = text if text is not None else self.text
+        word = word if word is not None else self._word
+        frequency = frequency if frequency is not None else self.n
+        return text, word, frequency
+
+    def __calculate_count_of_words(self,text):
         """Returns the dictionary with Key as Word and the Value contains the total Count of the word even if there are duplicates
 
         Args:
@@ -47,15 +53,18 @@ class WordProcessing(WordFrequencyAnalyzer):
             dictionary : Key as Word and the Value contains the total Count of the word even if there are duplicates
         """
         try:
-            all_words = re.findall(
-                r'[a-zA-Z]+', text, re.MULTILINE | re.IGNORECASE)
-            all_words = [x.lower() for x in all_words]
-            all_words = {
-                i: all_words.count(i) for i in all_words
-            }
-            return all_words
+            if isinstance(text,str) and len(text) != 0:
+                all_words = re.findall(
+                    r'[a-zA-Z]+', text, re.MULTILINE | re.IGNORECASE)
+                all_words = [x.lower() for x in all_words]
+                all_words = {
+                    i: all_words.count(i) for i in all_words
+                }
+                return all_words
+            else: 
+                raise TypeError
         except TypeError:
-            print("Invalid Type, Enter text in the parameter")
+            print("Invalid Type or empty string. Enter text in the parameter")
 
     # It returns the list with words removing seperators
     def calculate_highest_frequency(self,text):
@@ -68,12 +77,16 @@ class WordProcessing(WordFrequencyAnalyzer):
             int : Highest Frequency number in the text
         """
         try:
-            dict_words = self.calculate_count_of_words(text)
-            return max(dict_words.values())
+            text, word, n = self.__parse_inputs(text=text)
+            if isinstance(text,str) and len(text) != 0:
+                dict_words = self.__calculate_count_of_words(text)
+                return max(dict_words.values())
+            else:
+                raise TypeError
         except TypeError:
-            print("Invalid Type, Enter text in the parameter")
+            print("Invalid Type or empty string. Enter text in the parameter")
 
-    def calculate_most_frequent_n_words(self,text,n) -> list[InterfaceWordfrequency]:
+    def calculate_most_frequent_n_words(self,text=None,n=None) -> list[InterfaceWordfrequency]:
         """Returns list of the most frequent 'n' words in the input text
 
         Args:
@@ -84,12 +97,16 @@ class WordProcessing(WordFrequencyAnalyzer):
             list[InterfaceWordfrequency]: Returns list of the most frequent 'n' words in the input text
         """
         try:
-            all_words = self.calculate_count_of_words(text)
-            output_list = sorted(
-                all_words.items(), key=lambda x: (-x[1], x[0]))[:n]
-            return output_list
+            text, word, n = self.__parse_inputs(text=text,frequency=n)
+            if isinstance(text,str) and isinstance(n,int) and len(text) != 0 and n!=0: 
+                all_words = self.__calculate_count_of_words(text)
+                output_list = sorted(
+                    all_words.items(), key=lambda x: (-x[1], x[0]))[:n]
+                return output_list
+            else:
+                raise TypeError
         except TypeError:
-            print("Invalid Type, Enter text in the parameter")
+            print("Invalid Type or empty string or invalid frequency entered.")
 
     def calculate_frequency_for_word(self,text,word):
         """Returns the frequency of the specified word
@@ -102,19 +119,25 @@ class WordProcessing(WordFrequencyAnalyzer):
             int: returns the frequency of the specified word
         """
         try:
-            all_words = self.calculate_count_of_words(text)
-            return all_words.get(word.lower())
+            text, word, n = self.__parse_inputs(text=text,word=word)
+            if isinstance(text,str) and isinstance(word,str) and len(text)!= 0 and len(word)!=0: 
+                all_words = self.__calculate_count_of_words(text)
+                return all_words.get(word.lower())
+            else: 
+                raise TypeError
         except TypeError:
-            print("Invalid Type, Enter text in the parameter")
+            print("Invalid Type or empty string. Enter text and word in the parameter")
 
 
 if __name__ == '__main__':
 
     obj = WordProcessing()
-    #r= obj.calculate_count_of_words("Sun")
-    #r= obj.calculate_frequency_for_word("Sun Shines",'Sun')
+    # print(obj.word)
+    # print(obj.frequency)
+    #r= obj.calculate_count_of_words("")
+    #r= obj.calculate_frequency_for_word("Sun Shines","sun")
     #r= obj.calculate_highest_frequency("Sun Shines Shines")
-    #r= obj.calculate_most_frequent_n_words("Sun Shines lake",2)
+    #r= obj.calculate_most_frequent_n_words("Sun Shines",1)
 
     #print(r)
     #print(type(r))

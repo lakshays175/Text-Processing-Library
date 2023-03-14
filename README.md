@@ -16,7 +16,7 @@ Basically to reproduce environment you need to run `pip install -r requirements.
 
 ## Implementation
 
-In src folder,we provide the [main.py](main.py) script, which is a class implments interfaces. 
+In src folder,we provide the [main.py](../Word-Processing-Library/src/main.py) script, which is a class implments interfaces. 
 
 ### interfaces
 
@@ -45,7 +45,7 @@ Contains the definition of three methods.
     def calculate_frequency_for_word(self,text,word):
         pass
 ```
-More information can be found in [Documentation Section](Documentation)
+More information can be found in [Documentaton](./Docs/_build/html/index.html)
 
 ### class
 
@@ -65,7 +65,7 @@ For example, Calling method calculate_highest_frequency
 
 ```
 
-More information can be found in the [Documentation Section](Documentation)
+More information can be found in the [Documentaton](./Docs/_build/html/index.html)
 
 
 ## Running Tests
@@ -79,9 +79,9 @@ pytest is used for testing, which need to be installed.
 
 ### Testcases
 
-Testcases are added in the [testwordfrequency.py]() script.
+Testcases are added in the [testwordfrequency.py](../Word-Processing-Library/test/test_wordfrequency.py) script.
 
 ## Documentation
 
-Documentation is contained in [Documentation](https://linktodocumentation)
+Documentation is contained in [Documentaton](./Docs/_build/html/index.html)
 
