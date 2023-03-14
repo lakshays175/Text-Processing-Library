@@ -20,6 +20,8 @@ In src folder,we provide the [main.py](./src/main.py) script, which is a class i
 
 ### interfaces
 
+Interface scripts are in [WordFrequency](/src/InterfacewordFrequency.py) and [WordFrequencyAnalyzer](src/InterfaceWordFrequencyAnalyzer.py)
+
 #### WordFrequency
 
 Contains the definition of two methods, word and frequency. 
